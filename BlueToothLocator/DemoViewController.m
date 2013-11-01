@@ -49,7 +49,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Location Tracking Demo";
+        self.title = @"BLE Standard Tracking";
         peripheralDataDictionary = [NSMutableDictionary dictionary];
     }
     return self;

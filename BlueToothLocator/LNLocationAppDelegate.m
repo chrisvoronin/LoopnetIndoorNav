@@ -7,13 +7,14 @@
 //
 
 #import "LNLocationAppDelegate.h"
+#import "SelectViewController.h"
 
 @implementation LNLocationAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    DemoViewController * home = [[DemoViewController alloc] init];
+    SelectViewController * home = [[SelectViewController alloc] init];
     self.viewController = [[UINavigationController alloc]initWithRootViewController:home];
     self.viewController.navigationBar.translucent = NO;
     // Override point for customization after application launch.
