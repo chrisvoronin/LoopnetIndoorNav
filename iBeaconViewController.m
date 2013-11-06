@@ -16,6 +16,7 @@
     UIImageView* imgArrow;
     GridView * grid;
     __strong NSMutableDictionary * peripheralDataDictionary;
+    __strong NSMutableArray * animationQue;
 }
 
 @property (strong, nonatomic) CLBeaconRegion * region;
