@@ -67,7 +67,7 @@
     [self setNeedsDisplay];
 }
 
--(void)drawBeacons2:(CGContextRef)context
+-(CGRect)makeBeaconSquare
 {
     NSMutableArray * shortList = [NSMutableArray array];
     
@@ -86,7 +86,8 @@
     // draw overlaps
     CGRect rectArray[10];
     int rectCount = shortList.count;
-    bool foundCloseOne = false;
+    
+    foundCloseOne = false;
     
     for (int i = 0; i < rectCount; i++)
     {
@@ -98,7 +99,7 @@
         int minY = pt.y - xyDist;
         rectArray[i] = CGRectMake(minX, minY, xyDist * 2, xyDist * 2);
         
-        if (b.distance <= 3)
+        if (b.distance <= 1.5)
         {
             foundCloseOne = true;
             break;
@@ -109,11 +110,8 @@
     if (shortList.count > 0)
     {
         intersec = rectArray[0];
-        priorRect = intersec;
-    }
-    else
-    {
-        intersec = priorRect;
+        if (priorRect.size.width == 0)
+            priorRect = intersec;
     }
     
     if (rectCount > 1 && !foundCloseOne)
@@ -168,9 +166,7 @@
         intersec.origin.x -= len;
     }
     
-    
-    CGContextSetRGBStrokeColor(context, 1.0, 0, 0, 1.0);
-    CGContextStrokeRect(context, intersec);
+    return intersec;
 }
 
 - (void)drawRect:(CGRect)rect
@@ -223,7 +219,7 @@
     //circles
     UIColor * clr = [UIColor blueColor];
     UIColor * clrActive = [UIColor redColor];
-    UIColor * bcnDisabled = [UIColor greenColor];
+    //UIColor * bcnDisabled = [UIColor greenColor];
     
     int beaconID;
     for (int i = 1; i <= beaconsInARow; i++)
@@ -236,9 +232,7 @@
             CGContextAddEllipseInRect(context, rect);
             
             // in the future make these id's come from an array. (simulate 10 & 11)
-            if (beaconID == 10 || beaconID == 11)
-                CGContextSetFillColor(context, CGColorGetComponents([bcnDisabled CGColor]));
-            else if ([self activeBeaconsHaveBeaconID:beaconID])
+            if ([self activeBeaconsHaveBeaconID:beaconID])
                 CGContextSetFillColor(context, CGColorGetComponents([clrActive CGColor]));
             else
                 CGContextSetFillColor(context, CGColorGetComponents([clr CGColor]));
@@ -246,7 +240,43 @@
         }
     }
     
-    [self drawBeacons2:context];
+    CGRect beaconSquare = [self makeBeaconSquare];
+    float dist = [self distanceBetweenRectCenters:beaconSquare rect2:priorRect];
+    
+    NSLog(@"Distance Rects = %f", dist);
+    
+    if (dist <= 120 || foundCloseOne)
+    {
+        priorRect = beaconSquare;
+        CGContextSetRGBStrokeColor(context, 1.0, 0, 0, 1.0);
+        CGContextStrokeRect(context, beaconSquare);
+    }
+    else
+    {
+        CGContextSetRGBStrokeColor(context, 1.0, 0, 0, 1.0);
+        CGContextStrokeRect(context, priorRect);
+    }
+    
+    
+}
+
+
+-(float)distanceBetweenRectCenters:(CGRect)rect1 rect2:(CGRect)rect2
+{
+    CGPoint center1;
+    center1.x = rect1.origin.x + (rect1.size.width / 2);
+    center1.y = rect1.origin.y + (rect1.size.height / 2);
+    
+    CGPoint center2;
+    center2.x = rect2.origin.x + (rect2.size.width / 2);
+    center2.y = rect2.origin.y + (rect2.size.height / 2);
+    
+    double dy = abs(center2.y - center1.y);
+    double dx = abs(center2.x - center1.x);
+    
+    float dist = sqrt(dy * dy + dx * dx);
+    
+    return dist;
 }
 
 -(bool)activeBeaconsHaveBeaconID:(int)beaconID

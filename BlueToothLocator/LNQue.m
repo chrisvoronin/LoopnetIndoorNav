@@ -10,7 +10,7 @@
 
 @implementation LNQue
 {
-    int values[7];
+    int values[4];
     int currIndex;
     int prevVal;
 }
@@ -23,7 +23,7 @@
         return;
     
     currIndex++;
-    if (currIndex == 7)
+    if (currIndex == 4)
         currIndex = 0;
     
     values[currIndex] = value;
@@ -35,7 +35,7 @@
     int sum = 0;
     int count = 0;
     int value = 0;
-    for (int i = 0; i < 7; i++)
+    for (int i = 0; i < 4; i++)
     {
         value = values[i];
         if (value != 0)

@@ -13,6 +13,4 @@
 @interface iBeaconViewController : UIViewController <CLLocationManagerDelegate>
 
 
-
-
 @end

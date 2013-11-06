@@ -9,11 +9,13 @@
 #import "iBeaconViewController.h"
 #import "GridView.h"
 #import "ActiveBeacon.h"
+#import "LNQue.h"
 
 @interface iBeaconViewController ()
 {
     UIImageView* imgArrow;
     GridView * grid;
+    __strong NSMutableDictionary * peripheralDataDictionary;
 }
 
 @property (strong, nonatomic) CLBeaconRegion * region;
@@ -28,6 +30,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.title = @"iBeacon";
+        peripheralDataDictionary = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -127,23 +130,48 @@
     //TODO: Investigate if we need need to sort this or it's presorted.
     // this is without storing beacon references and prior values.
     // that may change.
-    NSArray *sortedArray;
-    sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-        double first = [(CLBeacon*)a accuracy];
-        double second = [(CLBeacon*)b accuracy];
-        if (first < second)
-            return NSOrderedAscending;
-        else if (first > second)
-            return NSOrderedDescending;
-        else
-            return NSOrderedSame;
-    }];
     
-    for (CLBeacon * b in sortedArray)
+//    NSArray *sortedArray;
+//    sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+//        double first = [(CLBeacon*)a accuracy];
+//        double second = [(CLBeacon*)b accuracy];
+//        if (first < second)
+//            return NSOrderedAscending;
+//        else if (first > second)
+//            return NSOrderedDescending;
+//        else
+//            return NSOrderedSame;
+//    }];
+
+    int i = 0;
+    for (CLBeacon * b in beacons)
     {
-        int beaconID = [b.minor intValue];
-        ActiveBeacon * active = [[ActiveBeacon alloc] initWithBeaconID:beaconID distance:b.accuracy];
-        [activeBeacons addObject:active];
+        NSLog(@"%f - %@ - %@", b.accuracy, b.minor, b.major);
+        if (b.accuracy > 0)
+        {
+            int beaconID = [b.minor intValue];
+            
+            // Que it up
+            LNQue * que;
+            if ([peripheralDataDictionary objectForKey:b.minor])
+            {
+                que = [peripheralDataDictionary objectForKey:b.minor];
+                [que addInt:b.accuracy];
+            }
+            else
+            {
+                que = [[LNQue alloc] init];
+                [que addInt:b.accuracy];
+                [peripheralDataDictionary setObject:que forKey:b.minor];
+            }
+            float accuracy = [que getAverage];
+            
+            ActiveBeacon * active = [[ActiveBeacon alloc] initWithBeaconID:beaconID distance:accuracy];
+            [activeBeacons addObject:active];
+            i++;
+            if (i == 3)
+                break;
+        }
     }
     
     [grid setBeaconsActive:activeBeacons];
@@ -151,6 +179,9 @@
 
 
 - (IBAction)StopClicked:(id)sender {
+    [self.locManager stopRangingBeaconsInRegion:self.region];
+    UIAlertView * ranging = [[UIAlertView alloc] initWithTitle:@"Stopped" message:@"Ranging Stopped" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [ranging show];
 }
 
 - (void)didReceiveMemoryWarning

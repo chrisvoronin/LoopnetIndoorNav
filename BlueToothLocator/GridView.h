@@ -26,6 +26,7 @@ typedef enum LocationAlgorithm : NSUInteger
     int rows;
     CGPoint ptTopLeft, ptBottomRight;
     CGRect priorRect;
+    bool foundCloseOne;
 }
 
 -(id)initWithFrame:(CGRect)frame beaconsInRow:(int)beaconsInRow numRows:(int)r;
