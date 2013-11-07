@@ -9,6 +9,7 @@
 #import "SelectViewController.h"
 #import "DemoViewController.h"
 #import "iBeaconViewController.h"
+#import "iBeaconViewControllerFullMapViewController.h"
 
 @interface SelectViewController ()
 
@@ -36,6 +37,11 @@
 }
 - (IBAction)simpleOption:(id)sender {
     DemoViewController * home = [[DemoViewController alloc] init];
+    [self.navigationController pushViewController:home animated:YES];
+}
+- (IBAction)floorPlanOption:(id)sender {
+    
+    iBeaconViewControllerFullMapViewController * home = [[iBeaconViewControllerFullMapViewController alloc] init];
     [self.navigationController pushViewController:home animated:YES];
 }
 

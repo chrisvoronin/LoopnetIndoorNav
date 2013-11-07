@@ -12,6 +12,15 @@
 		800818EF1759548600FCAEAE /* tower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 800818EE1759548600FCAEAE /* tower.jpg */; };
 		800818F1175955CE00FCAEAE /* arrow-up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 800818F0175955CE00FCAEAE /* arrow-up.jpg */; };
 		8033DBE51808B2B60062BF40 /* ActiveBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 8033DBE41808B2B60062BF40 /* ActiveBeacon.m */; };
+		80352375182B031D00FE5A9B /* tourfull.png in Resources */ = {isa = PBXBuildFile; fileRef = 80352371182B031D00FE5A9B /* tourfull.png */; };
+		80352376182B031D00FE5A9B /* tourfull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80352372182B031D00FE5A9B /* tourfull@2x.png */; };
+		80352377182B031D00FE5A9B /* tourshell.png in Resources */ = {isa = PBXBuildFile; fileRef = 80352373182B031D00FE5A9B /* tourshell.png */; };
+		80352378182B031D00FE5A9B /* tourshell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80352374182B031D00FE5A9B /* tourshell@2x.png */; };
+		8035237E182B092E00FE5A9B /* LocationUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8035237D182B092E00FE5A9B /* LocationUtility.m */; };
+		80352381182B0D4600FE5A9B /* BeaconCoordinates.m in Sources */ = {isa = PBXBuildFile; fileRef = 80352380182B0D4600FE5A9B /* BeaconCoordinates.m */; };
+		80352384182BF62F00FE5A9B /* GridViewSimple.m in Sources */ = {isa = PBXBuildFile; fileRef = 80352383182BF62F00FE5A9B /* GridViewSimple.m */; };
+		80352387182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80352386182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.m */; };
+		80352389182C1A3A00FE5A9B /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 80352388182C1A3A00FE5A9B /* square.png */; };
 		804AEB5917F35A5100F9E1B2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 804AEB5B17F35A5100F9E1B2 /* Localizable.strings */; };
 		8064C24117E90CBA00CCF940 /* LNQue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8064C24017E90CBA00CCF940 /* LNQue.m */; };
 		8071FFC617FA46230005FA98 /* GridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8071FFC517FA46220005FA98 /* GridView.m */; };
@@ -46,6 +55,19 @@
 		8030F33F180CCAA600E019DB /* TargetV2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TargetV2.plist; path = /Users/cvoronin/Downloads/BlueToothLocator/TargetV2.plist; sourceTree = "<absolute>"; };
 		8033DBE31808B2B60062BF40 /* ActiveBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveBeacon.h; sourceTree = "<group>"; };
 		8033DBE41808B2B60062BF40 /* ActiveBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveBeacon.m; sourceTree = "<group>"; };
+		80352371182B031D00FE5A9B /* tourfull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourfull.png; sourceTree = "<group>"; };
+		80352372182B031D00FE5A9B /* tourfull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tourfull@2x.png"; sourceTree = "<group>"; };
+		80352373182B031D00FE5A9B /* tourshell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourshell.png; sourceTree = "<group>"; };
+		80352374182B031D00FE5A9B /* tourshell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tourshell@2x.png"; sourceTree = "<group>"; };
+		8035237C182B092E00FE5A9B /* LocationUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationUtility.h; sourceTree = "<group>"; };
+		8035237D182B092E00FE5A9B /* LocationUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationUtility.m; sourceTree = "<group>"; };
+		8035237F182B0D4600FE5A9B /* BeaconCoordinates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconCoordinates.h; sourceTree = "<group>"; };
+		80352380182B0D4600FE5A9B /* BeaconCoordinates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconCoordinates.m; sourceTree = "<group>"; };
+		80352382182BF62F00FE5A9B /* GridViewSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewSimple.h; sourceTree = "<group>"; };
+		80352383182BF62F00FE5A9B /* GridViewSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewSimple.m; sourceTree = "<group>"; };
+		80352385182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iBeaconViewControllerFullMapViewController.h; sourceTree = "<group>"; };
+		80352386182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iBeaconViewControllerFullMapViewController.m; sourceTree = "<group>"; };
+		80352388182C1A3A00FE5A9B /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		804AEB5217F357DF00F9E1B2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		804AEB5A17F35A5100F9E1B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		804AEB5C17F35A5200F9E1B2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -74,11 +96,11 @@
 		80BCA8FB17062C3900BF5FDE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		80BCA90817062C5000BF5FDE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		80BCA90A1706360F00BF5FDE /* BlueToothLocator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BlueToothLocator.entitlements; sourceTree = "<group>"; };
-		80D46E7D182418E500F17B67 /* iBeaconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iBeaconViewController.h; sourceTree = "<group>"; };
-		80D46E7E182418E500F17B67 /* iBeaconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iBeaconViewController.m; sourceTree = "<group>"; };
-		80D46E821824650100F17B67 /* SelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectViewController.h; sourceTree = "<group>"; };
-		80D46E831824650100F17B67 /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
-		80D46E841824650100F17B67 /* SelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectViewController.xib; sourceTree = "<group>"; };
+		80D46E7D182418E500F17B67 /* iBeaconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iBeaconViewController.h; path = ../iBeaconViewController.h; sourceTree = "<group>"; };
+		80D46E7E182418E500F17B67 /* iBeaconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iBeaconViewController.m; path = ../iBeaconViewController.m; sourceTree = "<group>"; };
+		80D46E821824650100F17B67 /* SelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectViewController.h; path = ../SelectViewController.h; sourceTree = "<group>"; };
+		80D46E831824650100F17B67 /* SelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectViewController.m; path = ../SelectViewController.m; sourceTree = "<group>"; };
+		80D46E841824650100F17B67 /* SelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SelectViewController.xib; path = ../SelectViewController.xib; sourceTree = "<group>"; };
 		80D46E871824659300F17B67 /* buttonBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBlue.png; sourceTree = "<group>"; };
 		80D46E881824659300F17B67 /* buttonBlue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonBlue@2x.png"; sourceTree = "<group>"; };
 		80D46E891824659300F17B67 /* buttonBlueOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonBlueOn.png; sourceTree = "<group>"; };
@@ -103,30 +125,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		800818EB175953D600FCAEAE /* Images */ = {
+		80352370182B030C00FE5A9B /* Images */ = {
 			isa = PBXGroup;
 			children = (
 				800818F0175955CE00FCAEAE /* arrow-up.jpg */,
 				800818EE1759548600FCAEAE /* tower.jpg */,
 				800818EC175953F500FCAEAE /* arrow-right.jpg */,
+				80352371182B031D00FE5A9B /* tourfull.png */,
+				80352372182B031D00FE5A9B /* tourfull@2x.png */,
+				80352373182B031D00FE5A9B /* tourshell.png */,
+				80352374182B031D00FE5A9B /* tourshell@2x.png */,
+				80D46E871824659300F17B67 /* buttonBlue.png */,
+				80D46E881824659300F17B67 /* buttonBlue@2x.png */,
+				80D46E891824659300F17B67 /* buttonBlueOn.png */,
+				80D46E8A1824659400F17B67 /* buttonBlueOn@2x.png */,
 			);
 			name = Images;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		80BCA8D617062C3900BF5FDE = {
 			isa = PBXGroup;
 			children = (
-				80D46E871824659300F17B67 /* buttonBlue.png */,
-				80D46E881824659300F17B67 /* buttonBlue@2x.png */,
-				80D46E891824659300F17B67 /* buttonBlueOn.png */,
-				80D46E8A1824659400F17B67 /* buttonBlueOn@2x.png */,
-				80D46E821824650100F17B67 /* SelectViewController.h */,
-				80D46E831824650100F17B67 /* SelectViewController.m */,
-				80D46E841824650100F17B67 /* SelectViewController.xib */,
-				80D46E7D182418E500F17B67 /* iBeaconViewController.h */,
-				80D46E7E182418E500F17B67 /* iBeaconViewController.m */,
-				804AEB5B17F35A5100F9E1B2 /* Localizable.strings */,
-				800818EB175953D600FCAEAE /* Images */,
 				800818E917592E7F00FCAEAE /* CoreLocation.framework */,
 				80FF6ADF1714D7FB00D8ED27 /* MediaPlayer.framework */,
 				80BCA90817062C5000BF5FDE /* CoreBluetooth.framework */,
@@ -157,6 +177,14 @@
 		80BCA8EB17062C3900BF5FDE /* BlueToothLocator */ = {
 			isa = PBXGroup;
 			children = (
+				80352388182C1A3A00FE5A9B /* square.png */,
+				80D46E821824650100F17B67 /* SelectViewController.h */,
+				80D46E831824650100F17B67 /* SelectViewController.m */,
+				80D46E841824650100F17B67 /* SelectViewController.xib */,
+				80D46E7D182418E500F17B67 /* iBeaconViewController.h */,
+				80D46E7E182418E500F17B67 /* iBeaconViewController.m */,
+				804AEB5B17F35A5100F9E1B2 /* Localizable.strings */,
+				80352370182B030C00FE5A9B /* Images */,
 				80BCA90A1706360F00BF5FDE /* BlueToothLocator.entitlements */,
 				80BCA8F417062C3900BF5FDE /* LNLocationAppDelegate.h */,
 				80BCA8F517062C3900BF5FDE /* LNLocationAppDelegate.m */,
@@ -173,6 +201,14 @@
 				8033DBE41808B2B60062BF40 /* ActiveBeacon.m */,
 				807F6178180F6C2C00CA970C /* Triangulator.h */,
 				807F6179180F6C2C00CA970C /* Triangulator.m */,
+				8035237C182B092E00FE5A9B /* LocationUtility.h */,
+				8035237D182B092E00FE5A9B /* LocationUtility.m */,
+				8035237F182B0D4600FE5A9B /* BeaconCoordinates.h */,
+				80352380182B0D4600FE5A9B /* BeaconCoordinates.m */,
+				80352382182BF62F00FE5A9B /* GridViewSimple.h */,
+				80352383182BF62F00FE5A9B /* GridViewSimple.m */,
+				80352385182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.h */,
+				80352386182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.m */,
 			);
 			path = BlueToothLocator;
 			sourceTree = "<group>";
@@ -250,7 +286,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80352375182B031D00FE5A9B /* tourfull.png in Resources */,
 				80D46E861824650100F17B67 /* SelectViewController.xib in Resources */,
+				80352377182B031D00FE5A9B /* tourshell.png in Resources */,
 				80BCA8F017062C3900BF5FDE /* InfoPlist.strings in Resources */,
 				80D46E8B1824659400F17B67 /* buttonBlue.png in Resources */,
 				80BCA8F817062C3900BF5FDE /* Default.png in Resources */,
@@ -258,10 +296,13 @@
 				80D46E8E1824659400F17B67 /* buttonBlueOn@2x.png in Resources */,
 				80BCA8FC17062C3900BF5FDE /* Default-568h@2x.png in Resources */,
 				80D46E8C1824659400F17B67 /* buttonBlue@2x.png in Resources */,
+				80352389182C1A3A00FE5A9B /* square.png in Resources */,
 				800818ED175953F500FCAEAE /* arrow-right.jpg in Resources */,
 				800818EF1759548600FCAEAE /* tower.jpg in Resources */,
 				80D46E8D1824659400F17B67 /* buttonBlueOn.png in Resources */,
 				800818F1175955CE00FCAEAE /* arrow-up.jpg in Resources */,
+				80352378182B031D00FE5A9B /* tourshell@2x.png in Resources */,
+				80352376182B031D00FE5A9B /* tourfull@2x.png in Resources */,
 				804AEB5917F35A5100F9E1B2 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,7 +318,11 @@
 				80BCA8F617062C3900BF5FDE /* LNLocationAppDelegate.m in Sources */,
 				8064C24117E90CBA00CCF940 /* LNQue.m in Sources */,
 				8071FFC617FA46230005FA98 /* GridView.m in Sources */,
+				80352384182BF62F00FE5A9B /* GridViewSimple.m in Sources */,
 				8071FFC917FB2CB40005FA98 /* PeripheralData.m in Sources */,
+				80352381182B0D4600FE5A9B /* BeaconCoordinates.m in Sources */,
+				80352387182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.m in Sources */,
+				8035237E182B092E00FE5A9B /* LocationUtility.m in Sources */,
 				807F617A180F6C2C00CA970C /* Triangulator.m in Sources */,
 				80D46E80182418E500F17B67 /* iBeaconViewController.m in Sources */,
 				8033DBE51808B2B60062BF40 /* ActiveBeacon.m in Sources */,
@@ -296,6 +341,7 @@
 				804AEB5C17F35A5200F9E1B2 /* es */,
 			);
 			name = Localizable.strings;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		80BCA8EE17062C3900BF5FDE /* InfoPlist.strings */ = {

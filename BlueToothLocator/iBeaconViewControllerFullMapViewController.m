@@ -1,23 +1,29 @@
 //
-//  iBeaconViewController.m
+//  iBeaconViewControllerFullMapViewController.m
 //  BlueToothLocator
 //
-//  Created by Chris Voronin on 11/1/13.
+//  Created by Chris Voronin on 11/7/13.
 //  Copyright (c) 2013 Chris Voronin. All rights reserved.
 //
 
-#import "iBeaconViewController.h"
-#import "GridView.h"
-#import "ActiveBeacon.h"
+#import "iBeaconViewControllerFullMapViewController.h"
+#import "GridViewSimple.h"
 #import "LNQue.h"
-#import "LocationUtility.h"
+#import "ActiveBeacon.h"
+#import "BeaconCoordinates.h"
 
-@interface iBeaconViewController ()
+@interface iBeaconViewControllerFullMapViewController ()
 {
+    CGRect prevLocation;
+    CGRect prevLocation2;
+    
     UIImageView* imgArrow;
-    GridView * grid;
+    UIImageView* squareImage;
+    GridViewSimple * grid;
+    UIImageView * imageFloorPlan;
     __strong NSMutableDictionary * peripheralDataDictionary;
     __strong NSMutableArray * animationQue;
+    __strong LocationUtility * utility;
 }
 
 @property (strong, nonatomic) CLBeaconRegion * region;
@@ -25,14 +31,16 @@
 
 @end
 
-@implementation iBeaconViewController
+@implementation iBeaconViewControllerFullMapViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"iBeacon";
+        self.title = @"iBeacon Floorplan";
         peripheralDataDictionary = [NSMutableDictionary dictionary];
+        utility = [[LocationUtility alloc] initWithMaxWidth:11.8*2.5 andMeterInPixels:11.8];
+        utility.delegate = self;
     }
     return self;
 }
@@ -53,31 +61,45 @@
     rect.size.width = rect.size.height;
     rect.size.height = w - 64; //64 = statusbar + navbar.
     
-    grid = [[GridView alloc] initWithFrame:rect beaconsInRow:4 numRows:3];
+    imageFloorPlan = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tourshell"]];
+    [self.view addSubview:imageFloorPlan];
+    
+    squareImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"square"]];
+    [self.view addSubview:squareImage];
+    squareImage.frame = CGRectMake(0, 0, 0, 0);
+    
+    grid = [[GridViewSimple alloc] initWithFrame:rect];
     [self.view addSubview:grid];
     grid.layer.borderColor = [UIColor blueColor].CGColor;
     grid.layer.borderWidth = 1.0;
     
+    BeaconCoordinates * bc1 = [[BeaconCoordinates alloc] initWithID:1 andCoordinate:CGPointMake(467, 143)];
+    BeaconCoordinates * bc2 = [[BeaconCoordinates alloc] initWithID:2 andCoordinate:CGPointMake(526, 143)];
+    BeaconCoordinates * bc3 = [[BeaconCoordinates alloc] initWithID:3 andCoordinate:CGPointMake(585, 143)];
+    BeaconCoordinates * bc4 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(644, 143)];
+    
+    BeaconCoordinates * bc5 = [[BeaconCoordinates alloc] initWithID:5 andCoordinate:CGPointMake(467, 202)];
+    BeaconCoordinates * bc6 = [[BeaconCoordinates alloc] initWithID:6 andCoordinate:CGPointMake(526, 202)];
+    BeaconCoordinates * bc7 = [[BeaconCoordinates alloc] initWithID:7 andCoordinate:CGPointMake(585, 202)];
+    BeaconCoordinates * bc8 = [[BeaconCoordinates alloc] initWithID:8 andCoordinate:CGPointMake(644, 202)];
+    
+    BeaconCoordinates * bc9 = [[BeaconCoordinates alloc] initWithID:9 andCoordinate:CGPointMake(467, 261)];
+    BeaconCoordinates * bc10 = [[BeaconCoordinates alloc] initWithID:10 andCoordinate:CGPointMake(526, 261)];
+    BeaconCoordinates * bc11 = [[BeaconCoordinates alloc] initWithID:11 andCoordinate:CGPointMake(585, 261)];
+    BeaconCoordinates * bc12 = [[BeaconCoordinates alloc] initWithID:12 andCoordinate:CGPointMake(644, 261)];
+    [grid setBeacons:@[bc1, bc2, bc3, bc4, bc5, bc6, bc7, bc8, bc9, bc10, bc11, bc12]];
+    [utility setBeacons:@[bc1, bc2, bc3, bc4, bc5, bc6, bc7, bc8, bc9, bc10, bc11, bc12]];
     
     UIBarButtonItem * b1 = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleBordered target:self action:@selector(StartClicked:)];
     
     UIBarButtonItem * b2 = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStyleBordered target:self action:@selector(StopClicked:)];
     
-    self.navigationItem.rightBarButtonItems = @[b1, b2];
-}
-
-- (IBAction)StartClicked:(id)sender {
-    self.locManager = [[CLLocationManager alloc] init];
-    self.locManager.delegate = self;
-    self.locManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self initRegion];
-    // not sure
-    //[self locationManager:self.locManager didStartMonitoringForRegion:self.region];
+    UIBarButtonItem * b3 = [[UIBarButtonItem alloc] initWithTitle:@"Toggle-Grid" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowGrid:)];
+    
+    self.navigationItem.rightBarButtonItems = @[b1, b2, b3];
 }
 
 - (void)initRegion {
-    //E2C56DB5-DFFB-48D2-B060-D0F5A71096E0
-    //83256B74-78D0-43A4-8269-05F0DC8A44BA
     NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"];
     self.region = [[CLBeaconRegion alloc] initWithProximityUUID:uuid identifier:@"lopnetInoorNav"];
     if (self.region)
@@ -85,16 +107,15 @@
         self.region.notifyOnEntry = YES;
         self.region.notifyOnExit = YES;
         self.region.notifyEntryStateOnDisplay = YES;
-        NSLog(@"Inited");
-        NSLog(@"region mon avail %i", [CLLocationManager regionMonitoringAvailable]);
-        NSLog(@"ranging avail %i", [CLLocationManager isRangingAvailable]);
-        NSLog(@"class avail %i", [CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]]);
-    
+        
         if ([CLLocationManager regionMonitoringAvailable] && [CLLocationManager isRangingAvailable] && [CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]])
         {
-            NSLog(@"Enabled");
-            //[self.locManager startMonitoringForRegion:self.region];
+            NSLog(@"Init Done");
             [self.locManager startRangingBeaconsInRegion:self.region];
+        }
+        else
+        {
+            NSLog(@"Failed to init");
         }
     }
 }
@@ -129,22 +150,6 @@
     
     NSMutableArray * activeBeacons = [[NSMutableArray alloc] init];
     
-    //TODO: Investigate if we need need to sort this or it's presorted.
-    // this is without storing beacon references and prior values.
-    // that may change.
-    
-//    NSArray *sortedArray;
-//    sortedArray = [beacons sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-//        double first = [(CLBeacon*)a accuracy];
-//        double second = [(CLBeacon*)b accuracy];
-//        if (first < second)
-//            return NSOrderedAscending;
-//        else if (first > second)
-//            return NSOrderedDescending;
-//        else
-//            return NSOrderedSame;
-//    }];
-
     int i = 0;
     for (CLBeacon * b in beacons)
     {
@@ -176,14 +181,60 @@
         }
     }
     
-    [grid setBeaconsActive:activeBeacons];
+    //[grid setBeaconsActive:activeBeacons];
+    CGRect rect = [utility getRectFromActiveBeacons:activeBeacons];
+    
+    if (prevLocation.origin.x == 0)
+        prevLocation = rect;
+    
+    
+    if (prevLocation.origin.x == rect.origin.x && prevLocation.origin.y == rect.origin.y)
+    {
+        squareImage.frame = rect;
+    }
+    prevLocation2 = prevLocation;
+    prevLocation = rect;
+    
+    NSLog(@"RECT IS: %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    //TODO: Draw that rect.
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UITouch *myTouch = [[touches allObjects] objectAtIndex: 0];
+    CGPoint currentPos = [myTouch locationInView: self.view];
+    
+    //BeaconCoordinates * bc = [[BeaconCoordinates alloc] initWithID:1 andCoordinate:currentPos];
+    //[grid setBeacons:@[bc]];
+    
+    NSLog(@"Point in myView: (%f,%f)", currentPos.x, currentPos.y);
+}
+
+#pragma mark - Came Near Beacon Delegate
+-(void)cameNearBeaconID:(int)beaconID
+{
+    NSLog(@"Came near beacon %d", beaconID);
+}
+
+#pragma mark - Button Clicks
+
+-(void)ShowGrid:(id)sender
+{
+    [grid setHidden:!grid.isHidden];
+}
+
+- (void)StartClicked:(id)sender {
+    self.locManager = [[CLLocationManager alloc] init];
+    self.locManager.delegate = self;
+    self.locManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self initRegion];
 }
 
 
-- (IBAction)StopClicked:(id)sender {
+- (void)StopClicked:(id)sender {
     [self.locManager stopRangingBeaconsInRegion:self.region];
-    UIAlertView * ranging = [[UIAlertView alloc] initWithTitle:@"Stopped" message:@"Ranging Stopped" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [ranging show];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Stopped" message:@"Ranging Stopped" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
 }
 
 - (void)didReceiveMemoryWarning
@@ -192,19 +243,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
- //    self.lblUUID.text = @"Yes";
- //    self.lblAccuracy.text = [NSString stringWithFormat:@"%f", beacon.accuracy];
- //    if (beacon.proximity == CLProximityUnknown) {
- //        self.lblDistance.text = @"Unknown Proximity";
- //    } else if (beacon.proximity == CLProximityImmediate) {
- //        self.lblDistance.text = @"Immediate";
- //    } else if (beacon.proximity == CLProximityNear) {
- //        self.lblDistance.text = @"Near";
- //    } else if (beacon.proximity == CLProximityFar) {
- //        self.lblDistance.text = @"Far";
- //    }
- //    self.lblRSSI.text = [NSString stringWithFormat:@"%i", beacon.rssi];
- */
 
 @end
