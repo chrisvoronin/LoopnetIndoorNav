@@ -39,8 +39,7 @@
     if (self) {
         self.title = @"iBeacon Floorplan";
         peripheralDataDictionary = [NSMutableDictionary dictionary];
-        utility = [[LocationUtility alloc] initWithMaxWidth:11.8*2.5 andMeterInPixels:11.8];
-        utility.delegate = self;
+        utility = [[LocationUtility alloc] initWithMaxWidth:11.8*2.5 andMeterInPixels:11.8 andDelegate:self];
     }
     return self;
 }
@@ -146,14 +145,14 @@
 }
 
 -(void)locationManager:(CLLocationManager *)manager didRangeBeacons:(NSArray *)beacons inRegion:(CLBeaconRegion *)region {
-    NSLog(@"Ranged Beacons Count = %i", beacons.count);
+    //NSLog(@"Ranged Beacons Count = %i", beacons.count);
     
     NSMutableArray * activeBeacons = [[NSMutableArray alloc] init];
     
     int i = 0;
     for (CLBeacon * b in beacons)
     {
-        NSLog(@"%f - %@ - %@", b.accuracy, b.minor, b.major);
+       //NSLog(@"%f - %@ - %@", b.accuracy, b.minor, b.major);
         if (b.accuracy > 0)
         {
             int beaconID = [b.minor intValue];
@@ -195,7 +194,7 @@
     prevLocation2 = prevLocation;
     prevLocation = rect;
     
-    NSLog(@"RECT IS: %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    //NSLog(@"RECT IS: %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
     //TODO: Draw that rect.
 }
 

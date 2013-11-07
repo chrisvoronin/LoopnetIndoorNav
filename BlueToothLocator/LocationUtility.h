@@ -27,7 +27,7 @@
 
 @property (weak) id<LocationUtilityProtocol> delegate;
 
--(id)initWithMaxWidth:(float)max andMeterInPixels:(float)mip;
+-(id)initWithMaxWidth:(float)max andMeterInPixels:(float)mip andDelegate:(id<LocationUtilityProtocol>)del;
 
 
 -(CGRect)getRectFromActiveBeacons:(NSArray*)beacons;

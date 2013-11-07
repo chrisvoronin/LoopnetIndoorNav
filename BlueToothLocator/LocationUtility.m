@@ -11,13 +11,15 @@
 
 @implementation LocationUtility
 
--(id)initWithMaxWidth:(float)max andMeterInPixels:(float)mip
+-(id)initWithMaxWidth:(float)max andMeterInPixels:(float)mip andDelegate:(id<LocationUtilityProtocol>)del
 {
     self = [super init];
     if (self)
     {
         meterInPixels = mip;
         maxWidth = max;
+        self.delegate = del;
+        
         beaconCoordinates = [NSMutableDictionary dictionary];
         ptTopLeft = CGPointMake(467, 143);
         ptBottomRight = CGPointMake(644, 261);
@@ -30,7 +32,7 @@
     CGRect currRect = [self makeBeaconSquareFromBeacons:beacons];
     float dist = [self distanceBetweenRectCenters:currRect rect2:priorRect];
     
-    NSLog(@"Distance Rects = %f", dist);
+    //NSLog(@"Distance Rects = %f", dist);
     
     if (dist <= 55 || foundCloseOne)
     {
