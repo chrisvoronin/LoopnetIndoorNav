@@ -36,8 +36,11 @@
     [self.navigationController pushViewController:home animated:YES];
 }
 - (IBAction)simpleOption:(id)sender {
-    DemoViewController * home = [[DemoViewController alloc] init];
-    [self.navigationController pushViewController:home animated:YES];
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"No longer implemented" message:@":(" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    // will no longer work since beacon names have changed.
+    //DemoViewController * home = [[DemoViewController alloc] init];
+    //[self.navigationController pushViewController:home animated:YES];
 }
 - (IBAction)floorPlanOption:(id)sender {
     

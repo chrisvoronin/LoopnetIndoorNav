@@ -93,7 +93,7 @@
     
     UIBarButtonItem * b2 = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStyleBordered target:self action:@selector(StopClicked:)];
     
-    UIBarButtonItem * b3 = [[UIBarButtonItem alloc] initWithTitle:@"Toggle-Grid" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowGrid:)];
+    UIBarButtonItem * b3 = [[UIBarButtonItem alloc] initWithTitle:@"ToggleGrid" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowGrid:)];
     
     self.navigationItem.rightBarButtonItems = @[b1, b2, b3];
 }
