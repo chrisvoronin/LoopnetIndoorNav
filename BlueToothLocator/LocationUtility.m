@@ -21,7 +21,7 @@
         self.delegate = del;
         
         beaconCoordinates = [NSMutableDictionary dictionary];
-        ptTopLeft = CGPointMake(467, 143);
+        ptTopLeft = CGPointMake(447, 143);
         ptBottomRight = CGPointMake(644, 261);
     }
     return self;

@@ -21,6 +21,7 @@
     UIImageView* squareImage;
     GridViewSimple * grid;
     UIImageView * imageFloorPlan;
+    UIImageView * imageFloorPlanFull;
     __strong NSMutableDictionary * peripheralDataDictionary;
     __strong NSMutableArray * animationQue;
     __strong LocationUtility * utility;
@@ -63,6 +64,10 @@
     imageFloorPlan = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tourshell"]];
     [self.view addSubview:imageFloorPlan];
     
+    imageFloorPlanFull = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tourfull"]];
+    [imageFloorPlanFull setHidden:YES];
+    [self.view addSubview:imageFloorPlanFull];
+    
     squareImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"square"]];
     [self.view addSubview:squareImage];
     squareImage.frame = CGRectMake(0, 0, 0, 0);
@@ -95,7 +100,9 @@
     
     UIBarButtonItem * b3 = [[UIBarButtonItem alloc] initWithTitle:@"ToggleGrid" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowGrid:)];
     
-    self.navigationItem.rightBarButtonItems = @[b1, b2, b3];
+    UIBarButtonItem * b4 = [[UIBarButtonItem alloc] initWithTitle:@"ToggleLayout" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowPlan:)];
+    
+    self.navigationItem.rightBarButtonItems = @[b1, b2, b3, b4];
 }
 
 - (void)initRegion {
@@ -180,14 +187,18 @@
         }
     }
     
-    //[grid setBeaconsActive:activeBeacons];
     CGRect rect = [utility getRectFromActiveBeacons:activeBeacons];
     
+    //squareImage.frame = rect;
+    
     if (prevLocation.origin.x == 0)
+    {
         prevLocation = rect;
+        prevLocation2 = rect;
+    }
     
-    
-    if (prevLocation.origin.x == rect.origin.x && prevLocation.origin.y == rect.origin.y)
+    //to avoid unnecessary jumps, lets get 2 similar in a row.
+    if (CGRectIntersectsRect(prevLocation, rect))
     {
         squareImage.frame = rect;
     }
@@ -195,7 +206,6 @@
     prevLocation = rect;
     
     //NSLog(@"RECT IS: %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
-    //TODO: Draw that rect.
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -216,6 +226,11 @@
 }
 
 #pragma mark - Button Clicks
+
+-(void)ShowPlan:(id)sender
+{
+    [imageFloorPlanFull setHidden:!imageFloorPlanFull.hidden];
+}
 
 -(void)ShowGrid:(id)sender
 {

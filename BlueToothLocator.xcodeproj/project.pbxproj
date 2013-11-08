@@ -67,7 +67,7 @@
 		80352383182BF62F00FE5A9B /* GridViewSimple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewSimple.m; sourceTree = "<group>"; };
 		80352385182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iBeaconViewControllerFullMapViewController.h; sourceTree = "<group>"; };
 		80352386182BF8D300FE5A9B /* iBeaconViewControllerFullMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iBeaconViewControllerFullMapViewController.m; sourceTree = "<group>"; };
-		80352388182C1A3A00FE5A9B /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
+		80352388182C1A3A00FE5A9B /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = square.png; path = BlueToothLocator/square.png; sourceTree = "<group>"; };
 		804AEB5217F357DF00F9E1B2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		804AEB5A17F35A5100F9E1B2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		804AEB5C17F35A5200F9E1B2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -128,6 +128,7 @@
 		80352370182B030C00FE5A9B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				80352388182C1A3A00FE5A9B /* square.png */,
 				800818F0175955CE00FCAEAE /* arrow-up.jpg */,
 				800818EE1759548600FCAEAE /* tower.jpg */,
 				800818EC175953F500FCAEAE /* arrow-right.jpg */,
@@ -177,7 +178,6 @@
 		80BCA8EB17062C3900BF5FDE /* BlueToothLocator */ = {
 			isa = PBXGroup;
 			children = (
-				80352388182C1A3A00FE5A9B /* square.png */,
 				80D46E821824650100F17B67 /* SelectViewController.h */,
 				80D46E831824650100F17B67 /* SelectViewController.m */,
 				80D46E841824650100F17B67 /* SelectViewController.xib */,
