@@ -7,13 +7,25 @@
 //
 
 #import "AppDelegate.h"
+#import "WelcomeViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    WelcomeViewController * welcome = [[WelcomeViewController alloc] init];
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:welcome];
+    
+    nav.navigationBar.translucent = NO;
+    
+    self.window.rootViewController = nav;
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

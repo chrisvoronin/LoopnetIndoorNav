@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
+            <connections>
+                <outlet property="txtEmail" destination="bS3-eZ-Z2a" id="kqj-Jp-014"/>
+                <outlet property="txtPassword" destination="jg0-ok-tIp" id="i90-yO-2wx"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="smallbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="qco-ES-QE9">
+                    <rect key="frame" x="9" y="159" width="302" height="186"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="186" id="Cxl-9f-7oQ"/>
+                        <constraint firstAttribute="width" constant="302" id="sZi-tJ-RLi"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w4k-ep-Hly">
+                    <rect key="frame" x="26" y="284" width="268" height="47"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="268" id="H1d-Hs-0Bi"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="47" id="d2N-pv-I3V"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="268" id="iCG-x0-Q0O"/>
+                        <constraint firstAttribute="height" constant="47" id="nB1-fd-2Ob"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <state key="normal" title="Login" backgroundImage="buttonBlue.png">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="btnLoginClicked:" destination="-1" eventType="touchUpInside" id="hT0-wp-xqP"/>
+                    </connections>
+                </button>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bS3-eZ-Z2a">
+                    <rect key="frame" x="26" y="189" width="268" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="268" id="HHO-UO-Mze"/>
+                        <constraint firstAttribute="height" constant="30" id="ZyT-8Y-nxS"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="NKb-Un-DXF"/>
+                    </connections>
+                </textField>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jg0-ok-tIp">
+                    <rect key="frame" x="26" y="237" width="268" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="j1o-L0-CvR"/>
+                        <constraint firstAttribute="width" constant="268" id="zNx-kl-wDe"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="gD1-ZJ-1x1"/>
+                    </connections>
+                </textField>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="jg0-ok-tIp" firstAttribute="top" secondItem="bS3-eZ-Z2a" secondAttribute="bottom" constant="18" id="176-bg-xHv"/>
+                <constraint firstItem="w4k-ep-Hly" firstAttribute="leading" secondItem="bS3-eZ-Z2a" secondAttribute="leading" id="AzY-Bh-5N2"/>
+                <constraint firstItem="w4k-ep-Hly" firstAttribute="leading" secondItem="jg0-ok-tIp" secondAttribute="leading" id="CPw-Lq-zJ4"/>
+                <constraint firstItem="w4k-ep-Hly" firstAttribute="top" secondItem="jg0-ok-tIp" secondAttribute="bottom" constant="17" id="FR0-kA-esj"/>
+                <constraint firstAttribute="centerY" secondItem="qco-ES-QE9" secondAttribute="centerY" id="SsW-5v-QB6"/>
+                <constraint firstAttribute="centerX" secondItem="jg0-ok-tIp" secondAttribute="centerX" id="gYY-1H-7x5"/>
+                <constraint firstAttribute="centerX" secondItem="qco-ES-QE9" secondAttribute="centerX" id="kak-Mx-py6"/>
+                <constraint firstAttribute="centerY" secondItem="jg0-ok-tIp" secondAttribute="centerY" id="lGs-V3-v1u"/>
+            </constraints>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="buttonBlue.png" width="268" height="47"/>
+        <image name="smallbg.png" width="302" height="186"/>
+    </resources>
+</document>
