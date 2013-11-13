@@ -90,7 +90,6 @@
 		804549AF182DA6D3000BEBA6 /* UIImage+MultiFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 80454995182DA6D3000BEBA6 /* UIImage+MultiFormat.m */; };
 		804549B0182DA6D3000BEBA6 /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 80454997182DA6D3000BEBA6 /* UIImage+WebP.m */; };
 		804549B1182DA6D3000BEBA6 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 80454999182DA6D3000BEBA6 /* UIImageView+WebCache.m */; };
-		804549B9182DAE1D000BEBA6 /* square.png in Resources */ = {isa = PBXBuildFile; fileRef = 804549B4182DAE1D000BEBA6 /* square.png */; };
 		804549BA182DAE1D000BEBA6 /* tourfull.png in Resources */ = {isa = PBXBuildFile; fileRef = 804549B5182DAE1D000BEBA6 /* tourfull.png */; };
 		804549BB182DAE1D000BEBA6 /* tourfull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 804549B6182DAE1D000BEBA6 /* tourfull@2x.png */; };
 		804549BC182DAE1D000BEBA6 /* tourshell.png in Resources */ = {isa = PBXBuildFile; fileRef = 804549B7182DAE1D000BEBA6 /* tourshell.png */; };
@@ -111,6 +110,7 @@
 		804549DB182DB4AD000BEBA6 /* background2048x1536.png in Resources */ = {isa = PBXBuildFile; fileRef = 804549D9182DB4AD000BEBA6 /* background2048x1536.png */; };
 		80B04F6718314A5F0001424D /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B04F6518314A5F0001424D /* pin.png */; };
 		80B04F6818314A5F0001424D /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B04F6618314A5F0001424D /* pin@2x.png */; };
+		80B04FB11832BAF40001424D /* BeaconPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B04FB01832BAF40001424D /* BeaconPair.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,7 +250,6 @@
 		80454997182DA6D3000BEBA6 /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
 		80454998182DA6D3000BEBA6 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		80454999182DA6D3000BEBA6 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		804549B4182DAE1D000BEBA6 /* square.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square.png; sourceTree = "<group>"; };
 		804549B5182DAE1D000BEBA6 /* tourfull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourfull.png; sourceTree = "<group>"; };
 		804549B6182DAE1D000BEBA6 /* tourfull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tourfull@2x.png"; sourceTree = "<group>"; };
 		804549B7182DAE1D000BEBA6 /* tourshell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tourshell.png; sourceTree = "<group>"; };
@@ -271,6 +270,8 @@
 		804549D9182DB4AD000BEBA6 /* background2048x1536.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2048x1536.png; sourceTree = "<group>"; };
 		80B04F6518314A5F0001424D /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		80B04F6618314A5F0001424D /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
+		80B04FAF1832BAF40001424D /* BeaconPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BeaconPair.h; sourceTree = "<group>"; };
+		80B04FB01832BAF40001424D /* BeaconPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconPair.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -442,6 +443,8 @@
 				804548A4182D87B8000BEBA6 /* BeaconCoordinates.m */,
 				804548A5182D87B8000BEBA6 /* GridViewSimple.h */,
 				804548A6182D87B8000BEBA6 /* GridViewSimple.m */,
+				80B04FAF1832BAF40001424D /* BeaconPair.h */,
+				80B04FB01832BAF40001424D /* BeaconPair.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -552,7 +555,6 @@
 			children = (
 				80B04F6518314A5F0001424D /* pin.png */,
 				80B04F6618314A5F0001424D /* pin@2x.png */,
-				804549B4182DAE1D000BEBA6 /* square.png */,
 				804549B5182DAE1D000BEBA6 /* tourfull.png */,
 				804549B6182DAE1D000BEBA6 /* tourfull@2x.png */,
 				804549B7182DAE1D000BEBA6 /* tourshell.png */,
@@ -726,7 +728,6 @@
 				804549C6182DB1DE000BEBA6 /* icon58x58.png in Resources */,
 				804549C8182DB1DE000BEBA6 /* icon114x114.png in Resources */,
 				804548C4182D87B8000BEBA6 /* buttonBlueOn.png in Resources */,
-				804549B9182DAE1D000BEBA6 /* square.png in Resources */,
 				804549A3182DA6D3000BEBA6 /* LICENSE in Resources */,
 				804549BD182DAE1D000BEBA6 /* tourshell@2x.png in Resources */,
 				804549A4182DA6D3000BEBA6 /* README.md in Resources */,
@@ -764,6 +765,7 @@
 				804548BD182D87B8000BEBA6 /* iBeaconViewControllerFullMapViewController.m in Sources */,
 				80454882182D8619000BEBA6 /* AppDelegate.m in Sources */,
 				804549AD182DA6D3000BEBA6 /* UIButton+WebCache.m in Sources */,
+				80B04FB11832BAF40001424D /* BeaconPair.m in Sources */,
 				804549AC182DA6D3000BEBA6 /* SDWebImagePrefetcher.m in Sources */,
 				8045499C182DA6D3000BEBA6 /* MWPhotoBrowser.m in Sources */,
 				8045499B182DA6D3000BEBA6 /* MWPhoto.m in Sources */,

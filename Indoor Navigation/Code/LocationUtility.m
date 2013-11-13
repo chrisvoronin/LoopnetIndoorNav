@@ -8,6 +8,7 @@
 
 #import "LocationUtility.h"
 #import "ActiveBeacon.h"
+#import "BeaconPair.h"
 
 @implementation LocationUtility
 
@@ -45,6 +46,12 @@
     }
 }
 
+-(CGRect)getRectFromActiveBeaconsDoubledUp:(NSArray*)beacons
+{
+    CGRect currRect = [self makeBeaconSquareFromBeacons2:beacons];
+    return currRect;
+}
+
 -(void)setBeacons:(NSArray*)beaconCoordinatesArray
 {
     for(BeaconCoordinates * b in beaconCoordinatesArray)
@@ -63,7 +70,7 @@
     // filter far beacons
     for (ActiveBeacon * b in beacons)
     {
-        if (b.distance <= 225.5)
+        if (b.distance <= 6.5)
         {
             [shortList addObject:b];
         }
@@ -77,6 +84,173 @@
     int rectCount = (int)shortList.count;
     
     foundCloseOne = false;
+    
+    for (int i = 0; i < rectCount; i++)
+    {
+        ActiveBeacon * b = shortList[i];
+        
+        CGPoint pt = [self getBeaconXYCoords:b];
+        float xyDist = b.distance * meterInPixels;
+        int minX = pt.x - xyDist;
+        int minY = pt.y - xyDist;
+        rectArray[i] = CGRectMake(minX, minY, xyDist * 2, xyDist * 2);
+        if (b.distance <= 1.7)
+        {
+            foundCloseOne = true;
+            
+            [self.delegate cameNearBeaconID:b.beaconID];
+            break;
+        }
+    }
+    
+    CGRect intersec;
+    if (shortList.count > 0)
+    {
+        intersec = rectArray[0];
+        if (priorRect.size.width == 0)
+            priorRect = intersec;
+    }
+    
+    if (rectCount > 1 && !foundCloseOne)
+    {
+        if (CGRectIntersectsRect(rectArray[0], rectArray[1]))
+        {
+            intersec = CGRectIntersection(rectArray[0], rectArray[1]);
+        }
+        
+        if (rectCount > 2)
+        {
+            if (CGRectIntersectsRect(rectArray[1], rectArray[2]))
+            {
+                CGRect intersec2 = CGRectIntersection(rectArray[1], rectArray[2]);
+                if (CGRectIntersectsRect(intersec, intersec2))
+                    intersec = CGRectIntersection(intersec, intersec2);
+            }
+            if (CGRectIntersectsRect(rectArray[0], rectArray[2]))
+            {
+                CGRect intersec3 = CGRectIntersection(rectArray[0], rectArray[2]);
+                if (CGRectIntersectsRect(intersec, intersec3))
+                    intersec = CGRectIntersection(intersec, intersec3);
+            }
+        }
+    }
+    
+    //intersec.size.width = maxWidth;
+    //intersec.size.height = maxWidth;
+    
+    // constrain bounds by adjustment.
+    // y pos
+    if (intersec.origin.y + intersec.size.height > ptBottomRight.y)
+    {
+        int len = (intersec.origin.y + intersec.size.height) - ptBottomRight.y;
+        intersec.origin.y -= len;
+    }
+    else if (intersec.origin.y < ptTopLeft.y)
+    {
+        intersec.origin.y = ptTopLeft.y;
+    }
+    
+    // x pos
+    if (intersec.origin.x < ptTopLeft.x)
+    {
+        intersec.origin.x = ptTopLeft.x;
+    }
+    else if (intersec.origin.x + intersec.size.width > ptBottomRight.x)
+    {
+        int len = (intersec.origin.x + intersec.size.width) - ptBottomRight.x;
+        intersec.origin.x -= len;
+    }
+    
+    return intersec;
+}
+
+-(CGRect)makeBeaconSquareFromBeacons2:(NSArray*)beacons
+{
+    NSMutableArray * shortList = [NSMutableArray array];
+    
+    // filter far beacons
+    for (ActiveBeacon * b in beacons)
+    {
+        if (b.distance <= 6.5)
+        {
+            [shortList addObject:b];
+        }
+    }
+    
+    // for each beacon draw circle of how far it can go.
+    // find min/max x/y of each circle
+    // find overlaps
+    // draw overlaps
+    CGRect rectArray[30];
+    int rectCount = (int)shortList.count;
+    
+    foundCloseOne = false;
+    
+    // place beacons into pairs
+    
+    BeaconPair * beaconPairs[4];
+    beaconPairs[0] = [[BeaconPair alloc] init];
+    beaconPairs[1] = [[BeaconPair alloc] init];
+    beaconPairs[2] = [[BeaconPair alloc] init];
+    beaconPairs[3] = [[BeaconPair alloc] init];
+    
+    for (int i = 0; i < rectCount; i++)
+    {
+        ActiveBeacon * b = shortList[i];
+        
+        if (b.beaconID == 1 || b.beaconID == 2)
+        {
+            if (b.beaconID == 2)
+                beaconPairs[0].beacon2 = b;
+            else
+                beaconPairs[0].beacon1 = b;
+            beaconPairs[0].count ++;
+        }
+        else if (b.beaconID == 3 || b.beaconID == 4)
+        {
+            if (b.beaconID == 5)
+                beaconPairs[1].beacon2 = b;
+            else
+                beaconPairs[1].beacon1 = b;
+            beaconPairs[1].count ++;
+        }
+        else if (b.beaconID == 5 || b.beaconID == 6)
+        {
+            if (b.beaconID == 6)
+                beaconPairs[2].beacon2 = b;
+            else
+                beaconPairs[2].beacon1 = b;
+            beaconPairs[2].count ++;
+        }
+        else
+        {
+            if (b.beaconID == 8)
+                beaconPairs[3].beacon2 = b;
+            else
+                beaconPairs[3].beacon1 = b;
+            beaconPairs[3].count ++;
+        }
+    }
+    
+    NSMutableArray * array = [[NSMutableArray alloc]init];
+    for (int i = 0; i < 4; i++)
+    {
+        if (beaconPairs[i].count > 0)
+            [array addObject:beaconPairs[i]];
+    }
+    [array sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        BeaconPair * first = obj1;
+        BeaconPair * second = obj2;
+        if (first.confidenceValue > second.confidenceValue)
+            return NSOrderedAscending;
+        else if (first.confidenceValue < second.confidenceValue)
+            return NSOrderedDescending;
+        return NSOrderedSame;
+    }];
+
+    
+    //order by highest confidence.
+    // map out from there.
     
     for (int i = 0; i < rectCount; i++)
     {

@@ -32,6 +32,8 @@
 
 -(CGRect)getRectFromActiveBeacons:(NSArray*)beacons;
 
+-(CGRect)getRectFromActiveBeaconsDoubledUp:(NSArray*)beacons;
+
 -(void)setBeacons:(NSArray*)beaconCoordinatesArray;
 
 
