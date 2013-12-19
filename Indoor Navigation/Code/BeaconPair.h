@@ -20,4 +20,6 @@
 
 -(int)confidenceValue;
 
+-(CGRect)getRectFromBeaconPoints:(CGPoint)p1 and2:(CGPoint)p2 meterInPoints:(float)mip;
+
 @end

@@ -12,6 +12,6 @@
 #import "LocationUtility.h"
 #import "MBProgressHUD.h"
 
-@interface iBeaconViewControllerFullMapViewController : UIViewController <CLLocationManagerDelegate, LocationUtilityProtocol, MBProgressHUDDelegate>
+@interface iBeaconViewControllerFullMapViewController : UIViewController <CLLocationManagerDelegate, LocationUtilityProtocol, MBProgressHUDDelegate, UIScrollViewDelegate>
 
 @end

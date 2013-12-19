@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "WelcomeViewController.h"
+#import "iBeaconViewControllerFullMapViewController.h"
+#import "GameViewController.h"
 
 @implementation AppDelegate
 
@@ -20,6 +22,7 @@
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
     WelcomeViewController * welcome = [[WelcomeViewController alloc] init];
+    
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:welcome];
     
     nav.navigationBar.translucent = NO;

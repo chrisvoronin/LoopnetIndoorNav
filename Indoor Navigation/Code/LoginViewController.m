@@ -12,6 +12,7 @@
 @interface LoginViewController ()
 {
     bool isLoggedOn;
+    NSArray * listSteps;
 }
 @property (strong, nonatomic) IBOutlet UITextField *txtEmail;
 @property (strong, nonatomic) IBOutlet UITextField *txtPassword;
@@ -34,8 +35,9 @@
     [super viewDidLoad];
     [self.validation addValidationModel: [[ValidationModel alloc] initWithField:self.txtPassword andValidationType:ValidationEmpty]];
     [self.validation addValidationModel: [[ValidationModel alloc] initWithField:self.txtEmail andValidationType:ValidationEmail]];
-    self.txtEmail.text = @"andy@loopnet.com";
-    self.txtPassword.text = @"2747";
+    
+    //self.txtEmail.text = @"andy@loopnet.com";
+    //self.txtPassword.text = @"2747";
 }
 
 - (void)didReceiveMemoryWarning

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WelcomeViewController">
@@ -30,7 +30,7 @@
                         <constraint firstAttribute="width" constant="268" id="Ih0-HH-WLV"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <state key="normal" title="How It Works?" backgroundImage="btn_green_long.png">
+                    <state key="normal" title="How It Works?" backgroundImage="keyButton.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -62,7 +62,7 @@
                         <constraint firstAttribute="height" constant="47" id="HHY-1M-D4G"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <state key="normal" title="Login" backgroundImage="buttonBlue.png">
+                    <state key="normal" title="Login" backgroundImage="sign_in_off.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -70,7 +70,7 @@
                         <action selector="btnLoginClicked:" destination="-1" eventType="touchUpInside" id="Yk8-Ej-zAN"/>
                     </connections>
                 </button>
-                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP0-EJ-lvw">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cP0-EJ-lvw">
                     <rect key="frame" x="26" y="437" width="268" height="47"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
@@ -78,7 +78,7 @@
                         <constraint firstAttribute="height" constant="47" id="aEO-nH-YeH"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                    <state key="normal" title="Contact 1(818)926-1116" backgroundImage="buttonBlue.png">
+                    <state key="normal" title="Game" backgroundImage="sign_in_off.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -107,8 +107,9 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_green_long.png" width="268" height="40"/>
         <image name="buttonBlue.png" width="268" height="47"/>
+        <image name="keyButton.png" width="105" height="53"/>
+        <image name="sign_in_off.png" width="274" height="62"/>
         <image name="smallbg.png" width="302" height="186"/>
     </resources>
 </document>

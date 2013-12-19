@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "HowItWorksViewController.h"
 #import "SignUpViewController.h"
+#import "GameViewController.h"
 
 @interface WelcomeViewController ()
 
@@ -58,6 +59,11 @@
     [alert show];
 }
 - (IBAction)btnCallClicked:(id)sender {
+    
+    GameViewController * welcome = [[GameViewController alloc] init];
+    [self.navigationController pushViewController:welcome animated:YES];
+    return;
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Contact Information" message:@"Please call 1(818)926-1116" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];

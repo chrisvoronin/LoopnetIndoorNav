@@ -21,6 +21,8 @@
         maxWidth = max;
         self.delegate = del;
         
+        priorRect = CGRectZero;
+        
         beaconCoordinates = [NSMutableDictionary dictionary];
         ptTopLeft = CGPointMake(447, 143);
         ptBottomRight = CGPointMake(644, 261);
@@ -31,6 +33,9 @@
 -(CGRect)getRectFromActiveBeacons:(NSArray*)beacons
 {
     CGRect currRect = [self makeBeaconSquareFromBeacons:beacons];
+    return currRect;
+    
+    
     float dist = [self distanceBetweenRectCenters:currRect rect2:priorRect];
     
     //NSLog(@"Distance Rects = %f", dist);
@@ -65,29 +70,18 @@
 
 -(CGRect)makeBeaconSquareFromBeacons:(NSArray*)beacons
 {
-    NSMutableArray * shortList = [NSMutableArray array];
-    
-    // filter far beacons
-    for (ActiveBeacon * b in beacons)
-    {
-        if (b.distance <= 6.5)
-        {
-            [shortList addObject:b];
-        }
-    }
-    
     // for each beacon draw circle of how far it can go.
     // find min/max x/y of each circle
     // find overlaps
     // draw overlaps
     CGRect rectArray[30];
-    int rectCount = (int)shortList.count;
+    int rectCount = (int)beacons.count;
     
     foundCloseOne = false;
     
     for (int i = 0; i < rectCount; i++)
     {
-        ActiveBeacon * b = shortList[i];
+        ActiveBeacon * b = beacons[i];
         
         CGPoint pt = [self getBeaconXYCoords:b];
         float xyDist = b.distance * meterInPixels;
@@ -104,11 +98,13 @@
     }
     
     CGRect intersec;
-    if (shortList.count > 0)
+    if (beacons.count > 0)
     {
         intersec = rectArray[0];
-        if (priorRect.size.width == 0)
-            priorRect = intersec;
+        if (CGRectIntersectsRect(intersec, priorRect))
+        {
+            intersec = CGRectIntersection(intersec, priorRect);
+        }
     }
     
     if (rectCount > 1 && !foundCloseOne)
@@ -116,6 +112,16 @@
         if (CGRectIntersectsRect(rectArray[0], rectArray[1]))
         {
             intersec = CGRectIntersection(rectArray[0], rectArray[1]);
+        }
+        else
+        {
+            // this is new for adding between distance.
+            CGPoint center1 = CGPointMake(rectArray[0].origin.x + rectArray[0].size.width, rectArray[0].origin.y + rectArray[0].size.height);
+            CGPoint center2 = CGPointMake(rectArray[1].origin.x + rectArray[1].size.width, rectArray[1].origin.y + rectArray[1].size.height);
+
+            CGPoint midPoint = CGPointMake((center1.x + center2.x)/2, (center1.y + center2.y)/2);
+            int width = meterInPixels * 5.0;
+            intersec = CGRectMake(midPoint.x - width/2, midPoint.y - width/2, width, width);
         }
         
         if (rectCount > 2)
@@ -161,6 +167,8 @@
         intersec.origin.x -= len;
     }
     
+    priorRect = intersec;
+    
     return intersec;
 }
 
@@ -181,7 +189,6 @@
     // find min/max x/y of each circle
     // find overlaps
     // draw overlaps
-    CGRect rectArray[30];
     int rectCount = (int)shortList.count;
     
     foundCloseOne = false;
@@ -251,57 +258,33 @@
     
     //order by highest confidence.
     // map out from there.
-    
-    for (int i = 0; i < rectCount; i++)
-    {
-        ActiveBeacon * b = shortList[i];
-        
-        CGPoint pt = [self getBeaconXYCoords:b];
-        float xyDist = b.distance * meterInPixels;
-        int minX = pt.x - xyDist;
-        int minY = pt.y - xyDist;
-        rectArray[i] = CGRectMake(minX, minY, xyDist * 2, xyDist * 2);
-        if (b.distance <= 1.7)
-        {
-            foundCloseOne = true;
-            
-            [self.delegate cameNearBeaconID:b.beaconID];
-            break;
-        }
-    }
-    
     CGRect intersec;
-    if (shortList.count > 0)
-    {
-        intersec = rectArray[0];
-        if (priorRect.size.width == 0)
-            priorRect = intersec;
-    }
     
-    if (rectCount > 1 && !foundCloseOne)
+    for (int i = 0; i < array.count; i++)
     {
-        if (CGRectIntersectsRect(rectArray[0], rectArray[1]))
+        BeaconPair * bp = array[i];
+        CGPoint pt1 = bp.beacon1 ? [self getBeaconXYCoords:bp.beacon1] : CGPointZero;
+        CGPoint pt2 = bp.beacon2 ? [self getBeaconXYCoords:bp.beacon2] : CGPointZero;
+        CGRect rect = [bp getRectFromBeaconPoints:pt1 and2:pt2 meterInPoints:meterInPixels];
+        //NSLog(@"%f, %f, %f, %f, %i", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height, i);
+        if (i == 0)
+            intersec = rect;
+        else
         {
-            intersec = CGRectIntersection(rectArray[0], rectArray[1]);
-        }
-        
-        if (rectCount > 2)
-        {
-            if (CGRectIntersectsRect(rectArray[1], rectArray[2]))
+            if (CGRectIntersectsRect(rect, intersec))
             {
-                CGRect intersec2 = CGRectIntersection(rectArray[1], rectArray[2]);
-                if (CGRectIntersectsRect(intersec, intersec2))
-                    intersec = CGRectIntersection(intersec, intersec2);
-            }
-            if (CGRectIntersectsRect(rectArray[0], rectArray[2]))
-            {
-                CGRect intersec3 = CGRectIntersection(rectArray[0], rectArray[2]);
-                if (CGRectIntersectsRect(intersec, intersec3))
-                    intersec = CGRectIntersection(intersec, intersec3);
+                intersec = CGRectIntersection(rect, intersec);
             }
         }
     }
     
+    
+    if (intersec.size.width == 0.0 || intersec.size.height == 0.0 || intersec.origin.x == 0.0 || intersec.origin.y == 0.0)
+    {
+        NSLog(@"ZERO");
+    }
+    return intersec;
+
     //intersec.size.width = maxWidth;
     //intersec.size.height = maxWidth;
     

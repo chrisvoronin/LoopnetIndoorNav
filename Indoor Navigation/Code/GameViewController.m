@@ -1,19 +1,18 @@
 //
-//  iBeaconViewControllerFullMapViewController.m
-//  BlueToothLocator
+//  GameViewController.m
+//  Indoor Navigation
 //
-//  Created by Chris Voronin on 11/7/13.
-//  Copyright (c) 2013 Chris Voronin. All rights reserved.
+//  Created by Chris Voronin on 12/3/13.
+//  Copyright (c) 2013 Better Web Now. All rights reserved.
 //
 
-#import "iBeaconViewControllerFullMapViewController.h"
-#import "GridViewSimple.h"
+#import "GameViewController.h"
 #import "LNQue.h"
 #import "ActiveBeacon.h"
 #import "BeaconCoordinates.h"
 #import "PairIntegers.h"
 
-@interface iBeaconViewControllerFullMapViewController ()
+@interface GameViewController ()
 {
     NSString * prevBeaconString;
     
@@ -24,9 +23,9 @@
     MBProgressHUD * progress;
     UITapGestureRecognizer *HUDSingleTap;
     
-    UIImageView* imgArrow;
+    UIImageView* imgBear;
     UIImageView* squareImage;
-    GridViewSimple * grid;
+
     UIImageView * imageFloorPlan;
     UIImageView * imageFloorPlanFull;
     __strong NSMutableDictionary * peripheralDataDictionary;
@@ -34,9 +33,6 @@
     __strong LocationUtility * utility;
     
     UIPinchGestureRecognizer * pinchGR;
-    
-    UIScrollView * scrollView;
-    UIView *containerView;
     
     int maxBeaconDistance; // should be 7 for normal play.
 }
@@ -46,7 +42,7 @@
 
 @end
 
-@implementation iBeaconViewControllerFullMapViewController
+@implementation GameViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,114 +68,38 @@
     rect.size.width = rect.size.height;
     rect.size.height = w - 64; //64 = statusbar + navbar.
     
-    CGRect frame = rect;
-    // create scroll view.
-    scrollView = [[UIScrollView alloc] initWithFrame:frame];
-    scrollView.delegate = self;
-    scrollView.scrollEnabled = YES;
-    [self.view addSubview:scrollView];
-    
-    // add container view.
-    containerView = [[UIView alloc] initWithFrame:frame];
-    [scrollView addSubview:containerView];
-    
-    scrollView.contentSize = frame.size;
-    
-    imgArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow-right.jpg"]];
-    imgArrow.frame = CGRectMake(30, 670, 20, 20);
-    [containerView addSubview:imgArrow];
-    
     lblDebug = [[UILabel alloc] initWithFrame:CGRectMake(130, 670, 300, 20)];
-    [containerView addSubview:lblDebug];
+    [self.view addSubview:lblDebug];
     
     imageFloorPlan = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tourshell"]];
-    [containerView addSubview:imageFloorPlan];
+    //[self.view addSubview:imageFloorPlan];
     
     imageFloorPlanFull = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tourfull"]];
     [imageFloorPlanFull setHidden:YES];
-    [containerView addSubview:imageFloorPlanFull];
-    
-    grid = [[GridViewSimple alloc] initWithFrame:rect];
-    [containerView addSubview:grid];
-    grid.layer.borderColor = [UIColor blueColor].CGColor;
-    grid.layer.borderWidth = 1.0;
-    
-    
+    //[self.view addSubview:imageFloorPlanFull];
     
     prevLocation = CGRectZero;
     prevLocation2 = CGRectZero;
-    
-    BeaconCoordinates * bc1 = [[BeaconCoordinates alloc] initWithID:1 andCoordinate:CGPointMake(467, 143)];
-    BeaconCoordinates * bc2 = [[BeaconCoordinates alloc] initWithID:2 andCoordinate:CGPointMake(526, 143)];
-    BeaconCoordinates * bc3 = [[BeaconCoordinates alloc] initWithID:3 andCoordinate:CGPointMake(585, 143)];
-    BeaconCoordinates * bc4 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(644, 143)];
-    
-    BeaconCoordinates * bc5 = [[BeaconCoordinates alloc] initWithID:5 andCoordinate:CGPointMake(467, 202)];
-    BeaconCoordinates * bc6 = [[BeaconCoordinates alloc] initWithID:6 andCoordinate:CGPointMake(526, 202)];
-    BeaconCoordinates * bc7 = [[BeaconCoordinates alloc] initWithID:7 andCoordinate:CGPointMake(585, 202)];
-    BeaconCoordinates * bc8 = [[BeaconCoordinates alloc] initWithID:8 andCoordinate:CGPointMake(644, 202)];
-    
-    BeaconCoordinates * bc9 = [[BeaconCoordinates alloc] initWithID:9 andCoordinate:CGPointMake(467, 261)];
-    BeaconCoordinates * bc10 = [[BeaconCoordinates alloc] initWithID:10 andCoordinate:CGPointMake(526, 261)];
-    BeaconCoordinates * bc11 = [[BeaconCoordinates alloc] initWithID:11 andCoordinate:CGPointMake(585, 261)];
-    BeaconCoordinates * bc12 = [[BeaconCoordinates alloc] initWithID:12 andCoordinate:CGPointMake(644, 261)];
-    
-    [grid setBeacons:@[bc1, bc2, bc3, bc4, bc5, bc6, bc7, bc8, bc9, bc10, bc11, bc12]];
-    [utility setBeacons:@[bc1, bc2, bc3, bc4, bc5, bc6, bc7, bc8, bc9, bc10, bc11, bc12]];
     
     UIBarButtonItem * b1 = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleBordered target:self action:@selector(StartClicked:)];
     
     UIBarButtonItem * b2 = [[UIBarButtonItem alloc] initWithTitle:@"Stop" style:UIBarButtonItemStyleBordered target:self action:@selector(StopClicked:)];
     
-    UIBarButtonItem * b3 = [[UIBarButtonItem alloc] initWithTitle:@"ToggleGrid" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowGrid:)];
-    
-    UIBarButtonItem * b4 = [[UIBarButtonItem alloc] initWithTitle:@"ToggleLayout" style:UIBarButtonItemStyleBordered target:self action:@selector(ShowPlan:)];
-    
-    self.navigationItem.rightBarButtonItems = @[b1, b2, b3, b4];
+    self.navigationItem.rightBarButtonItems = @[b1, b2];
     
     UIImage * imgPin = [UIImage imageNamed:@"pin"];
     squareImage = [[UIImageView alloc] initWithImage:imgPin];
-    squareImage.frame = CGRectMake(50, 50, imgPin.size.width, imgPin.size.height);
-    [containerView addSubview:squareImage];
-    [containerView bringSubviewToFront:squareImage];
-    squareImage.hidden = YES;
+    squareImage.frame = CGRectMake(rect.size.width/2, rect.size.height/2, imgPin.size.width, imgPin.size.height);
+    [self.view addSubview:squareImage];
+    [self.view bringSubviewToFront:squareImage];
     
-    pinchGR = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinchAction:)];
-    //[self.view addGestureRecognizer:pinchGR];
+    UIImage * bear = [UIImage imageNamed:@"bear"];
+    imgBear = [[UIImageView alloc] initWithImage:bear];
+    imgBear.frame = CGRectMake(0, 0, bear.size.width, bear.size.height);
+    imgBear.hidden = YES;
+    [self.view addSubview:imgBear];
     
     [self runAnimation];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    // Set up the minimum & maximum zoom scales
-    CGRect scrollViewFrame = scrollView.frame;
-    CGFloat scaleWidth = scrollViewFrame.size.width / scrollView.contentSize.width;
-    CGFloat scaleHeight = scrollViewFrame.size.height / scrollView.contentSize.height;
-    CGFloat minScale = MIN(scaleWidth, scaleHeight);
-    
-    scrollView.minimumZoomScale = minScale;
-    scrollView.maximumZoomScale = 3.0f;
-    scrollView.zoomScale = minScale;
-    
-    [self centerScrollViewContents];
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    
-    scrollView = nil;
-    containerView = nil;
-}
-
--(void)pinchAction:(UIPinchGestureRecognizer*)recognizer
-{
-    if (recognizer.scale > 1.0f && recognizer.scale < 2.5f)
-    {
-        CGAffineTransform transo = CGAffineTransformMakeScale(recognizer.scale, recognizer.scale);
-        self.view.transform = transo;
-    }
 }
 
 - (void)initRegion {
@@ -237,19 +157,13 @@
     if (beacons.count == 0)
         return;
     
-    NSMutableArray * activeBeacons = [[NSMutableArray alloc] init];
-    
-    int i = 0;
     for (CLBeacon * b in beacons)
     {
-        if (i == 0)
-            lblDebug.text = [NSString stringWithFormat:@"%f - %@", b.accuracy, b.minor];
-        
-        if (b.accuracy > 0  && b.accuracy < maxBeaconDistance)
+        int beaconID = [b.minor intValue];
+        if (beaconID == 5 && b.accuracy > 0 && b.accuracy < maxBeaconDistance)
         {
-            NSLog(@"%f - %@", b.accuracy, b.minor);
-            
-            int beaconID = [b.minor intValue];
+            [progress hide:YES];
+            lblDebug.text = [NSString stringWithFormat:@"%f", b.accuracy];
             
             // Que it up
             LNQue * que;
@@ -264,55 +178,22 @@
                 [que addInt:b.accuracy];
                 [peripheralDataDictionary setObject:que forKey:b.minor];
             }
-            float accuracy = [que getAverage];
             
-            ActiveBeacon * active = [[ActiveBeacon alloc] initWithBeaconID:beaconID distance:accuracy];
-            [activeBeacons addObject:active];
-            i++;
-            if (i == 3)
-                break;
-        }
-    }
-    
-    // return if 0.
-    if (activeBeacons.count == 0)
-        return;
-    
-    /*new stuff*/
-    
-    NSString * beaconString = @"";
-    int countBeacons = MIN((int)activeBeacons.count, 3);
-    for (int i = 0; i < countBeacons; i++)
-    {
-        ActiveBeacon * b = activeBeacons[i];
-        beaconString = [NSString stringWithFormat:@"%@,%d", beaconString, b.beaconID];
-    }
-    if ([prevBeaconString isEqualToString:beaconString])
-    {
-        CGRect currFrame = squareImage.frame;
-        CGRect rect = [utility getRectFromActiveBeacons:activeBeacons];
-        CGPoint ptCenter;
-        ptCenter.x = rect.origin.x + rect.size.width / 2;
-        ptCenter.y = rect.origin.y + rect.size.height / 2;
-        ptCenter.x -= currFrame.size.width;
-        ptCenter.y -= currFrame.size.height;
-        currFrame.origin = ptCenter;
-        if (squareImage.hidden)
-        {
-            squareImage.hidden = NO;
-            squareImage.frame = currFrame;
-            [progress hide:YES];
-        }
-        else
-        {
+            float accuracy = [que getAverage];
+            int xDist = accuracy * 40;
+            int xPoint = squareImage.frame.origin.x + xDist;
+            int yPoint = squareImage.frame.origin.y;
+            CGRect bearFrame = imgBear.frame;
+            bearFrame.origin = CGPointMake(xPoint, yPoint);
+            
             PairIntegers * pi = [[PairIntegers alloc] init];
-            pi.pt = currFrame;
+            pi.pt = bearFrame;
             
             @synchronized(animationQue)
             {
                 if (animationQue.count == 0)
                 {
-                    CGPoint last = squareImage.frame.origin;
+                    CGPoint last = imgBear.frame.origin;
                     float dist = [self distbetweenPoints:last p2:pi.pt.origin];
                     if (dist > 10)
                     {
@@ -335,46 +216,10 @@
                     }
                 }
             }
+            
+            //[imgBear setFrame:bearFrame];
         }
-        // clear it so we can read it in twice again.
-        prevBeaconString = @"";
     }
-    else
-    {
-        prevBeaconString = beaconString;
-    }
-    
-    
-    return;
-     /*new stuff end*/
-    
-    CGRect rect = [utility getRectFromActiveBeacons:activeBeacons];
-    
-    if (prevLocation.origin.x == 0)
-    {
-        prevLocation = rect;
-        prevLocation2 = rect;
-    }
-    
-    //to avoid unnecessary jumps, lets get 2 similar in a row.
-    if (CGRectIntersectsRect(prevLocation, rect) && rect.origin.x > 0)
-    {
-        if (progress)
-        {
-            [progress hide:YES];
-        }
-        squareImage.hidden = NO;
-        CGRect frm = squareImage.frame;
-        frm.origin = rect.origin;
-        frm.origin.x -= frm.size.width / 2;
-        frm.origin.y -= frm.size.height;
-        squareImage.frame = frm;
-    }
-    prevLocation2 = prevLocation;
-    prevLocation = rect;
-    
-    
-    //NSLog(@"RECT IS: %f, %f, %f, %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 }
 
 -(float)distbetweenPoints:(CGPoint)p1 p2:(CGPoint)p2
@@ -399,7 +244,8 @@
     if (next.origin.x > 0)
     {
         [UIView animateWithDuration:0.5 animations:^{
-            squareImage.frame = next;
+            imgBear.frame = next;
+            [imgBear setHidden:NO];
         } completion:^(BOOL finished) {
             [self performSelector:@selector(runAnimation) withObject:nil afterDelay:1.0];
             
@@ -468,10 +314,6 @@
     [imageFloorPlanFull setHidden:!imageFloorPlanFull.hidden];
 }
 
--(void)ShowGrid:(id)sender
-{
-    [grid setHidden:!grid.isHidden];
-}
 
 - (void)StartClicked:(id)sender {
     self.locManager = [[CLLocationManager alloc] init];
@@ -498,39 +340,4 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-#pragma mark - UIScrollViewDelegate
-
-- (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    // Return the view that we want to zoom
-    return containerView;
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    // The scroll view has zoomed, so we need to re-center the contents
-    [self centerScrollViewContents];
-}
-
-#pragma mark - Scrolling
-
-- (void)centerScrollViewContents {
-    CGSize boundsSize = scrollView.bounds.size;
-    CGRect contentsFrame = containerView.frame;
-    
-    if (contentsFrame.size.width < boundsSize.width) {
-        contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0f;
-    } else {
-        contentsFrame.origin.x = 0.0f;
-    }
-    
-    if (contentsFrame.size.height < boundsSize.height) {
-        contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0f;
-    } else {
-        contentsFrame.origin.y = 0.0f;
-    }
-    
-    containerView.frame = contentsFrame;
-}
-
-
 @end
