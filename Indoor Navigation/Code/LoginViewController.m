@@ -33,6 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.txtEmail.text = @"andy@loopnet.com";
+    
     [self.validation addValidationModel: [[ValidationModel alloc] initWithField:self.txtPassword andValidationType:ValidationEmpty]];
     [self.validation addValidationModel: [[ValidationModel alloc] initWithField:self.txtEmail andValidationType:ValidationEmail]];
     

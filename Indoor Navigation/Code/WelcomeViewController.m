@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"Indoor Navigation";
+        self.title = NSLocalizedString(@"TITLE", @"Title for home screen");
     }
     return self;
 }
@@ -53,27 +53,25 @@
 }
 
 - (IBAction)btnSignUpClicked:(id)sender {
-    //UIViewController * vc = [[SignUpViewController alloc] init];
-    //[self.navigationController pushViewController:vc animated:YES];
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Contact Information" message:@"Functionality temporarily disabled. Please click the call button below to call us." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-}
-- (IBAction)btnCallClicked:(id)sender {
-    
     GameViewController * welcome = [[GameViewController alloc] init];
     [self.navigationController pushViewController:welcome animated:YES];
     return;
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Contact Information" message:@"Please call 1(818)926-1116" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        [alert show];
-    }
-    else
-    {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:18189261116"]];
-    }
 }
+//- (IBAction)btnCallClicked:(id)sender {
+//    
+//    
+//    
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//    {
+//        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Contact Information" message:@"Please call 1(818)926-1116" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        [alert show];
+//    }
+//    else
+//    {
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:18189261116"]];
+//    }
+//}
 
 
 

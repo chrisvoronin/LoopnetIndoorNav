@@ -85,7 +85,7 @@
     
     scrollView.contentSize = frame.size;
     
-    imgArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arrow-right.jpg"]];
+    imgArrow = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"largearrowup"]];
     imgArrow.frame = CGRectMake(30, 670, 20, 20);
     [containerView addSubview:imgArrow];
     
@@ -113,19 +113,34 @@
     BeaconCoordinates * bc2 = [[BeaconCoordinates alloc] initWithID:2 andCoordinate:CGPointMake(526, 143)];
     BeaconCoordinates * bc3 = [[BeaconCoordinates alloc] initWithID:3 andCoordinate:CGPointMake(585, 143)];
     BeaconCoordinates * bc4 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(644, 143)];
+    BeaconCoordinates * bc42 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(703, 143)];
+    BeaconCoordinates * bc43 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(762, 143)];
+    BeaconCoordinates * bc44 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(821, 143)];
+    BeaconCoordinates * bc45 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(880, 143)];
+    BeaconCoordinates * bc46 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(939, 143)];
     
     BeaconCoordinates * bc5 = [[BeaconCoordinates alloc] initWithID:5 andCoordinate:CGPointMake(467, 202)];
     BeaconCoordinates * bc6 = [[BeaconCoordinates alloc] initWithID:6 andCoordinate:CGPointMake(526, 202)];
     BeaconCoordinates * bc7 = [[BeaconCoordinates alloc] initWithID:7 andCoordinate:CGPointMake(585, 202)];
     BeaconCoordinates * bc8 = [[BeaconCoordinates alloc] initWithID:8 andCoordinate:CGPointMake(644, 202)];
+    BeaconCoordinates * bc52 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(703, 202)];
+    BeaconCoordinates * bc53 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(762, 202)];
+    BeaconCoordinates * bc54 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(821, 202)];
+    BeaconCoordinates * bc55 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(880, 202)];
+    BeaconCoordinates * bc56 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(939, 202)];
     
     BeaconCoordinates * bc9 = [[BeaconCoordinates alloc] initWithID:9 andCoordinate:CGPointMake(467, 261)];
     BeaconCoordinates * bc10 = [[BeaconCoordinates alloc] initWithID:10 andCoordinate:CGPointMake(526, 261)];
     BeaconCoordinates * bc11 = [[BeaconCoordinates alloc] initWithID:11 andCoordinate:CGPointMake(585, 261)];
     BeaconCoordinates * bc12 = [[BeaconCoordinates alloc] initWithID:12 andCoordinate:CGPointMake(644, 261)];
+    BeaconCoordinates * bc62 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(703, 261)];
+    BeaconCoordinates * bc63 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(762, 261)];
+    BeaconCoordinates * bc64 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(821, 261)];
+    BeaconCoordinates * bc65 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(880, 261)];
+    BeaconCoordinates * bc66 = [[BeaconCoordinates alloc] initWithID:4 andCoordinate:CGPointMake(939, 261)];
     
-    [grid setBeacons:@[bc1, bc2, bc3, bc4, bc5, bc6, bc7, bc8, bc9, bc10, bc11, bc12]];
-    [utility setBeacons:@[bc1, bc2, bc3, bc4, bc5, bc6, bc7, bc8, bc9, bc10, bc11, bc12]];
+    [grid setBeacons:@[bc1, bc2, bc3, bc4, bc42, bc43, bc44, bc45, bc46, bc52, bc53, bc54, bc55, bc56, bc62, bc63, bc64, bc65, bc66, bc5, bc6, bc7, bc8, bc9, bc10, bc11, bc12]];
+    [utility setBeacons:@[bc1, bc2, bc3, bc4, bc42, bc43, bc44, bc45, bc46, bc52, bc53, bc54, bc55, bc56, bc62, bc63, bc64, bc65, bc66, bc5, bc6, bc7, bc8, bc9, bc10, bc11, bc12]];
     
     UIBarButtonItem * b1 = [[UIBarButtonItem alloc] initWithTitle:@"Start" style:UIBarButtonItemStyleBordered target:self action:@selector(StartClicked:)];
     
@@ -479,6 +494,7 @@
     self.locManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self initRegion];
     [self startTaskWithProgressTitle:@"Triangulating your location..."];
+    [self.locManager startUpdatingHeading];
 }
 
 
@@ -532,5 +548,23 @@
     containerView.frame = contentsFrame;
 }
 
+- (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading {
+    if (newHeading.headingAccuracy < 0)
+        return;
+    
+    // Use the true heading if it is valid.
+    CLLocationDirection  theHeading = ((newHeading.trueHeading > 0) ?
+                                       newHeading.trueHeading : newHeading.magneticHeading);
+    
+    theHeading += 90.0f;
+    
+    float headingDegrees = (theHeading*M_PI/180); //assuming needle points to top of iphone. convert to radians
+    imgArrow.transform = CGAffineTransformMakeRotation(headingDegrees);
+}
+
+-(BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager
+{
+    return YES;
+}
 
 @end

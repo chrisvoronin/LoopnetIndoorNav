@@ -10,6 +10,7 @@
 #import "WelcomeViewController.h"
 #import "iBeaconViewControllerFullMapViewController.h"
 #import "GameViewController.h"
+#import "MagnoMeterViewController.h"
 
 @implementation AppDelegate
 
@@ -21,7 +22,9 @@
     [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     
-    WelcomeViewController * welcome = [[WelcomeViewController alloc] init];
+    UIViewController * welcome = [[WelcomeViewController alloc] init];
+    
+    //welcome = [[MagnoMeterViewController alloc] initWithStyle:UITableViewStylePlain];
     
     UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:welcome];
     

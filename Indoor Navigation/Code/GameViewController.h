@@ -14,4 +14,6 @@
 
 @interface GameViewController : UIViewController <CLLocationManagerDelegate, MBProgressHUDDelegate, LocationUtilityProtocol>
 
+@property (strong, nonatomic) IBOutlet UILabel *lblInfo;
+
 @end

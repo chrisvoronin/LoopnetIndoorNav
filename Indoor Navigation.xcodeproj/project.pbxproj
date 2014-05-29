@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8000108C18872132007EA241 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8000108E18872132007EA241 /* Localizable.strings */; };
+		802E619D1868EA5300DDB47D /* MagnoMeterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 802E619C1868EA5300DDB47D /* MagnoMeterViewController.m */; };
 		80454872182D8619000BEBA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80454871182D8619000BEBA6 /* Foundation.framework */; };
 		80454874182D8619000BEBA6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80454873182D8619000BEBA6 /* CoreGraphics.framework */; };
 		80454876182D8619000BEBA6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80454875182D8619000BEBA6 /* UIKit.framework */; };
@@ -142,6 +144,9 @@
 		80B04F6818314A5F0001424D /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80B04F6618314A5F0001424D /* pin@2x.png */; };
 		80B04FB11832BAF40001424D /* BeaconPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B04FB01832BAF40001424D /* BeaconPair.m */; };
 		80B0531C183545ED0001424D /* PairIntegers.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B0531B183545ED0001424D /* PairIntegers.m */; };
+		80C9D50A192A7A3000C73D9D /* GameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C9D509192A7A3000C73D9D /* GameViewController.xib */; };
+		80EE507118AD5A190045BC8A /* largearrowup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EE506F18AD5A190045BC8A /* largearrowup@2x.png */; };
+		80EE507218AD5A190045BC8A /* largearrowup.png in Resources */ = {isa = PBXBuildFile; fileRef = 80EE507018AD5A190045BC8A /* largearrowup.png */; };
 		80FEAB76184E5EEF0056624B /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FEAB74184E5EEF0056624B /* GameViewController.m */; };
 		80FEAB7A184E66F10056624B /* bear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FEAB78184E66F10056624B /* bear@2x.png */; };
 		80FEAB7B184E66F10056624B /* bear.png in Resources */ = {isa = PBXBuildFile; fileRef = 80FEAB79184E66F10056624B /* bear.png */; };
@@ -158,6 +163,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8000108818871A62007EA241 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8000108918871A62007EA241 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8000108D18872132007EA241 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		8000108F18872136007EA241 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		802E619B1868EA5300DDB47D /* MagnoMeterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnoMeterViewController.h; sourceTree = "<group>"; };
+		802E619C1868EA5300DDB47D /* MagnoMeterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnoMeterViewController.m; sourceTree = "<group>"; };
 		8045486E182D8619000BEBA6 /* Indoor Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Indoor Navigation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80454871182D8619000BEBA6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		80454873182D8619000BEBA6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -338,6 +349,9 @@
 		80B04FB01832BAF40001424D /* BeaconPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BeaconPair.m; sourceTree = "<group>"; };
 		80B0531A183545ED0001424D /* PairIntegers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PairIntegers.h; sourceTree = "<group>"; };
 		80B0531B183545ED0001424D /* PairIntegers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PairIntegers.m; sourceTree = "<group>"; };
+		80C9D509192A7A3000C73D9D /* GameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameViewController.xib; sourceTree = "<group>"; };
+		80EE506F18AD5A190045BC8A /* largearrowup@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "largearrowup@2x.png"; sourceTree = "<group>"; };
+		80EE507018AD5A190045BC8A /* largearrowup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = largearrowup.png; sourceTree = "<group>"; };
 		80FEAB73184E5EEF0056624B /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		80FEAB74184E5EEF0056624B /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		80FEAB78184E66F10056624B /* bear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bear@2x.png"; sourceTree = "<group>"; };
@@ -429,6 +443,7 @@
 				8045487A182D8619000BEBA6 /* InfoPlist.strings */,
 				8045487D182D8619000BEBA6 /* main.m */,
 				8045487F182D8619000BEBA6 /* Indoor Navigation-Prefix.pch */,
+				8000108E18872132007EA241 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -490,6 +505,9 @@
 				804548DC182D88A5000BEBA6 /* SignUpViewController.xib */,
 				80FEAB73184E5EEF0056624B /* GameViewController.h */,
 				80FEAB74184E5EEF0056624B /* GameViewController.m */,
+				80C9D509192A7A3000C73D9D /* GameViewController.xib */,
+				802E619B1868EA5300DDB47D /* MagnoMeterViewController.h */,
+				802E619C1868EA5300DDB47D /* MagnoMeterViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -691,26 +709,28 @@
 		804549D5182DB39A000BEBA6 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				804549D8182DB4AD000BEBA6 /* background1024x768.png */,
+				804549D9182DB4AD000BEBA6 /* background2048x1536.png */,
+				804549BE182DB1DE000BEBA6 /* background320x460.png */,
+				804549C3182DB1DE000BEBA6 /* background640x1136.png */,
+				804549BF182DB1DE000BEBA6 /* background640x920.png */,
+				804549D6182DB43C000BEBA6 /* background640x960.png */,
+				804549C2182DB1DE000BEBA6 /* icon114x114.png */,
+				804549C1182DB1DE000BEBA6 /* icon120x120.png */,
+				804549CC182DB2F9000BEBA6 /* icon152x152.png */,
+				804549D2182DB376000BEBA6 /* icon29x29.png */,
+				804549CA182DB2F9000BEBA6 /* icon40x40.png */,
+				804549C0182DB1DE000BEBA6 /* icon58x58.png */,
+				804549D0182DB349000BEBA6 /* icon76x76.png */,
+				804549CB182DB2F9000BEBA6 /* icon80x80.png */,
+				80EE507018AD5A190045BC8A /* largearrowup.png */,
+				80EE506F18AD5A190045BC8A /* largearrowup@2x.png */,
 				8063750918579EC40053A36B /* thin_arrow_down.png */,
 				8063750A18579EC40053A36B /* thin_arrow_down@2x.png */,
 				8063750B18579EC40053A36B /* thin_arrow_left.png */,
 				8063750C18579EC40053A36B /* thin_arrow_left@2x.png */,
 				8063750D18579EC40053A36B /* thin_arrow_right.png */,
 				8063750E18579EC40053A36B /* thin_arrow_right@2x.png */,
-				804549D8182DB4AD000BEBA6 /* background1024x768.png */,
-				804549D9182DB4AD000BEBA6 /* background2048x1536.png */,
-				804549D6182DB43C000BEBA6 /* background640x960.png */,
-				804549CA182DB2F9000BEBA6 /* icon40x40.png */,
-				804549CB182DB2F9000BEBA6 /* icon80x80.png */,
-				804549CC182DB2F9000BEBA6 /* icon152x152.png */,
-				804549BE182DB1DE000BEBA6 /* background320x460.png */,
-				804549BF182DB1DE000BEBA6 /* background640x920.png */,
-				804549C0182DB1DE000BEBA6 /* icon58x58.png */,
-				804549C1182DB1DE000BEBA6 /* icon120x120.png */,
-				804549D0182DB349000BEBA6 /* icon76x76.png */,
-				804549D2182DB376000BEBA6 /* icon29x29.png */,
-				804549C2182DB1DE000BEBA6 /* icon114x114.png */,
-				804549C3182DB1DE000BEBA6 /* background640x1136.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -759,7 +779,7 @@
 		80454866182D8619000BEBA6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Better Web Now";
 				TargetAttributes = {
 					8045486D182D8619000BEBA6 = {
@@ -776,6 +796,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ru,
 			);
 			mainGroup = 80454865182D8619000BEBA6;
 			productRefGroup = 8045486F182D8619000BEBA6 /* Products */;
@@ -793,6 +814,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8000108C18872132007EA241 /* Localizable.strings in Resources */,
 				804548F1182D8CDC000BEBA6 /* btn_action_black.png in Resources */,
 				806374D218564E840053A36B /* photo_placeholder@2x.png in Resources */,
 				804549BB182DAE1D000BEBA6 /* tourfull@2x.png in Resources */,
@@ -808,6 +830,7 @@
 				8063753E1857D16D0053A36B /* calcOrangeOn.png in Resources */,
 				804548CB182D8808000BEBA6 /* LoginViewController.xib in Resources */,
 				804548C2182D87B8000BEBA6 /* buttonBlue.png in Resources */,
+				80C9D50A192A7A3000C73D9D /* GameViewController.xib in Resources */,
 				806375471857D45F0053A36B /* calcGrayOn@2x.png in Resources */,
 				8063751118579EC40053A36B /* thin_arrow_left.png in Resources */,
 				80B04F6718314A5F0001424D /* pin.png in Resources */,
@@ -836,6 +859,7 @@
 				804548EF182D8CDC000BEBA6 /* btn_action_black_on.png in Resources */,
 				80454911182DA2FE000BEBA6 /* floorPlan.png in Resources */,
 				806375331857AED10053A36B /* keyButtonOn.png in Resources */,
+				80EE507218AD5A190045BC8A /* largearrowup.png in Resources */,
 				804549C5182DB1DE000BEBA6 /* background640x920.png in Resources */,
 				80454962182DA658000BEBA6 /* MWPhotoBrowser.bundle in Resources */,
 				804549CF182DB2F9000BEBA6 /* icon152x152.png in Resources */,
@@ -857,6 +881,7 @@
 				804549C6182DB1DE000BEBA6 /* icon58x58.png in Resources */,
 				804549C8182DB1DE000BEBA6 /* icon114x114.png in Resources */,
 				8063751318579EC40053A36B /* thin_arrow_right.png in Resources */,
+				80EE507118AD5A190045BC8A /* largearrowup@2x.png in Resources */,
 				8063753C1857D16D0053A36B /* calcOrange.png in Resources */,
 				80FEAB7B184E66F10056624B /* bear.png in Resources */,
 				804548C4182D87B8000BEBA6 /* buttonBlueOn.png in Resources */,
@@ -912,6 +937,7 @@
 				804549A0182DA6D3000BEBA6 /* DACircularProgressView.m in Sources */,
 				804549B1182DA6D3000BEBA6 /* UIImageView+WebCache.m in Sources */,
 				804549AB182DA6D3000BEBA6 /* SDWebImageManager.m in Sources */,
+				802E619D1868EA5300DDB47D /* MagnoMeterViewController.m in Sources */,
 				804548BA182D87B8000BEBA6 /* BeaconCoordinates.m in Sources */,
 				804549A5182DA6D3000BEBA6 /* NSData+GIF.m in Sources */,
 				804548D8182D8896000BEBA6 /* HowItWorksViewController.m in Sources */,
@@ -958,10 +984,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8000108E18872132007EA241 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8000108D18872132007EA241 /* en */,
+				8000108F18872136007EA241 /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		8045487A182D8619000BEBA6 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8045487B182D8619000BEBA6 /* en */,
+				8000108818871A62007EA241 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -970,6 +1006,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				80454894182D8619000BEBA6 /* en */,
+				8000108918871A62007EA241 /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -981,7 +1018,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -994,7 +1030,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chris Voronin (K26G7G23E3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1021,7 +1057,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1034,7 +1069,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Chris Voronin (R7WWG5EU6C)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1086,7 +1121,6 @@
 		8045489E182D8619000BEBA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Indoor Navigation.app/Indoor Navigation";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -1109,7 +1143,6 @@
 		8045489F182D8619000BEBA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Indoor Navigation.app/Indoor Navigation";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
